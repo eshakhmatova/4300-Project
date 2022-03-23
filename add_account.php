@@ -6,13 +6,20 @@ $dob = filter_input(INPUT_POST, 'dob');
 $email = filter_input(INPUT_POST, 'email');
 $uname = filter_input(INPUT_POST, 'uname');
 $pword = filter_input(INPUT_POST, 'pword');
+$pwordValidation = filter_input(INPUT_POST, 'pwordValidation');
+
+
 
 // Validate inputs
 //need to validate passwords match, validate unique username and email, and all fields filled
 if ($uname == null || $pword == null ) {
     $error_message = "Invalid account data. Check all fields and try 
     again.";
-    include('add_account_error.php'); 
+    include('add_account_error.php');
+}
+else if ($pwordValidation != $pword) {
+    $error_message = "Passwords do not match.";
+    include('add_account_error.php');
 } else { //if input is valid
     require_once('database.php');
     // Add the product to the database  

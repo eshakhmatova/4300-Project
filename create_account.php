@@ -36,7 +36,11 @@ require_once('database.php');
         </label>
         <br>
         <label style="width:400px">Password:
-            <input style="margin-left:50px;flex:0 0 130px;" type="text" name="pword">
+            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pword">
+		</label>
+		<br>
+		<label style="width:400px">Re-enter Password:
+            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pwordValidation">
 		</label>
         <br>
         <input style="padding:0; margin-left:14px; flex:0 0 40px;" type="submit" value="Add">		
