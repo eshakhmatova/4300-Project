@@ -21,11 +21,11 @@ if ($uname == null || $pword == null ) {
               VALUES
                  (:firstName, :lastName, :DOB, :email, :userName, :password)';
     $statement = $db->prepare($query);
-    $statement = $db->bindValue(':firstName', $firstName);
-    $statement = $db->bindValue(':lastName', $lastName);
-    $statement = $db->bindValue(':DOB', $dob);
-    $statement = $db->bindValue(':email', $email);
-    $statement->bindValue(':username', $uname);
+    $statement->bindValue(':firstName', $firstName);
+    $statement->bindValue(':lastName', $lastName);
+    $statement->bindValue(':DOB', $dob);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':userName', $uname);
     $statement->bindValue(':password', $pword);
     $statement->execute();
     $statement->closeCursor();
