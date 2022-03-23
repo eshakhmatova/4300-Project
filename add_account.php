@@ -24,7 +24,7 @@ if ($uname == null || $pword == null ) {
     $statement = $db->bindValue(':firstName', $firstName);
     $statement = $db->bindValue(':lastName', $lastName);
     $statement = $db->bindValue(':DOB', $dob);
-    $statement = $db->bindValue(':email', $email)
+    $statement = $db->bindValue(':email', $email);
     $statement->bindValue(':username', $uname);
     $statement->bindValue(':password', $pword);
     $statement->execute();
