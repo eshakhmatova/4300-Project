@@ -20,8 +20,8 @@ $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) === 1) {
     $row = mysqli_fetch_assoc($result);
-    if ($row['username'] === $uname && $row['password'] === $pword) {
-        include('main_menu.php');
+    if ($row['userName'] === $uname && $row['password'] === $pword) {
+        include('website.html');
     }
     else{
         $error_message = "Incorrect password.";
