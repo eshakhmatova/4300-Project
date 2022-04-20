@@ -25,11 +25,11 @@
                 </div>
                 <nav>
                     <ul>
-                        <li> <a href="">Home</a></li>
+                        <li> <a href="website.php">Home</a></li>
                         <li> <a href="">Products</a></li>
                         <li> <a href="">About</a></li>
                         <li> <a href="">Contact</a></li>
-                        <li> <a href="">Account</a></li>
+                        <li> <a href="account.php">Account</a></li>
                     </ul>
                 </nav>
                 <img src="./images/cart.png" width="30px" height="30px">

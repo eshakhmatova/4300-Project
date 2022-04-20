@@ -1,6 +1,10 @@
 <?php
 require_once('database.php');
 
+//start session to save which user is currently logged in & other data related to their visit
+session_start();
+
+//validating input
 if(isset($_POST['uname']) && isset($_POST['pword'])) {
     function validate($data) {
         $data = trim($data);
@@ -13,7 +17,6 @@ if(isset($_POST['uname']) && isset($_POST['pword'])) {
 $uname = validate($_POST['uname']);
 $pword = validate($_POST['pword']);
 
-//$sql = "SELECT * FROM users WHERE username='$uname' AND password='$pass'";
 $query = "SELECT * FROM users WHERE username='$uname'";
 $statement = $db->prepare($query);
 $result = mysqli_query($conn, $query);
@@ -21,7 +24,9 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) === 1) {
     $row = mysqli_fetch_assoc($result);
     if ($row['userName'] === $uname && $row['password'] === $pword) {
-        include('website.html');
+        //if valid login, save current user's ID
+        $_SESSION["userID"] = $row['userId'];
+        include('website.php');
     }
     else{
         $error_message = "Incorrect password.";
