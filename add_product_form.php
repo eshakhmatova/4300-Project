@@ -42,11 +42,9 @@ $statement->closeCursor();
     </div>
 
     <h1>List a Product</h1>
-    <form action = "add_product.php" method="post" id="add_product_form">
-        <!--need to add "Add images" option too-->
-        <p>reminder for ADD IMAGES</p>
+    <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
         <label> Product Images:
-            <input type="file" id="imageFile" name = "imageFile" multiple>
+            <input type="file" id="chooseFile" name = "imageFile[]" multiple>
         </label>
         <div class="imgGallery">
             <!--Displays images-->

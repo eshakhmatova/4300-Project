@@ -32,21 +32,21 @@ else {
     $statement->closeCursor();
 
     $productId = $db->lastInsertId();
-    //CHANGE TO VIEW PRODUCT!!!!!!!!! after that page is complete
     //https://www.positronx.io/php-multiple-files-images-upload-in-mysql-database/
     //if images exist
    //if (!empty(array_filter($_FILES['imageFile']['name']))) {
     //if ($_FILES['imageFile']['size'] != 0 && $_FILES['imageFile']['error'] == 0) {
-    if (isset($_FILES['imageFile'])) {
+    if ($_FILES['imageFile']['size'] > 0) {
         foreach ($_FILES['imageFile']['name'] as $id=>$val) {
             $fileName = $_FILES['imageFile']['name'][$id];
             $tempLocation = $_FILES['imageFile']['tmp_name'][$id];
             $targetFilePath = $uploadsDir.$fileName;
             $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+            $uploadDate = date('Y-m-d H:i:s')
             $uploadOK = 1;
             if(in_array($fileType, $allowedFileType)) {
                 if(move_uploaded_file($tempLocation, $targetFilePath)) {
-                    $image = "('".$fileName."')";
+                    $image = $uploadsDir.$fileName.$uploadDate;
                 }
                 else {
                     $error_message = "Image could not be uploaded.";
@@ -62,7 +62,7 @@ else {
                 $statement->bindValue(':typeId', $productId);
                 $statement->bindValue(':image', $image);
                 $statement->execute();
-                $statment->closeCursor();
+                $statement->closeCursor();
             }
         }
     }
