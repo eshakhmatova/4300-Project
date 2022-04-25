@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2022 at 05:51 PM
+-- Generation Time: Apr 25, 2022 at 02:57 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -62,6 +62,26 @@ CREATE TABLE `category` (
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`categoryId`, `name`, `description`) VALUES
+(1, 'Auto', ''),
+(2, 'Electronics', ''),
+(3, 'Collectibles & Art', ''),
+(4, 'Home & Garden', ''),
+(5, 'Clothing, Shoes, & Accessories', ''),
+(6, 'Toys & Hobbies', ''),
+(7, 'Sporting Goods', ''),
+(8, 'Books, Movies, & Music', ''),
+(9, 'Health & Beauty', ''),
+(10, 'Business & Industrial', ''),
+(11, 'Jewelry & Watches', ''),
+(12, 'Baby Essentials', ''),
+(13, 'Pet Supplies', ''),
+(14, 'Other', '');
+
 -- --------------------------------------------------------
 
 --
@@ -72,7 +92,7 @@ CREATE TABLE `image` (
   `imageId` int(11) NOT NULL,
   `type` tinyint(1) NOT NULL,
   `typeId` int(11) NOT NULL,
-  `image` blob NOT NULL
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,13 +135,20 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `categoryId` int(11) NOT NULL,
-  `auction` tinyint(1) NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `status` int(11) NOT NULL,
   `createDate` datetime NOT NULL,
   `sellByDate` datetime NOT NULL,
+  `sold` tinyint(1) NOT NULL,
   `customerId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`productId`, `userId`, `name`, `description`, `categoryId`, `price`, `createDate`, `sellByDate`, `sold`, `customerId`) VALUES
+(1, 1, 'yamaha', 'pioano', 6, '100000', '2022-04-20 15:13:31', '0000-00-00 00:00:00', 0, 0),
+(2, 1, 'massager', 'perfect for those sore muscles!', 2, '7869', '2022-04-20 15:15:24', '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -136,15 +163,16 @@ CREATE TABLE `users` (
   `DOB` date NOT NULL,
   `email` varchar(255) NOT NULL,
   `userName` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `aboutMe` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userId`, `firstName`, `lastName`, `DOB`, `email`, `userName`, `password`) VALUES
-(1, 'ELIZAVETA', 'SHAKHMATOVA', '2022-03-23', 'lizapuppy@yahoo.com', 'liza', 'password');
+INSERT INTO `users` (`userId`, `firstName`, `lastName`, `DOB`, `email`, `userName`, `password`, `aboutMe`) VALUES
+(1, 'ELIZAVETA', 'SHAKHMATOVA', '2022-03-23', 'lizapuppy@yahoo.com', 'liza', 'password', NULL);
 
 --
 -- Indexes for dumped tables
@@ -208,7 +236,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `image`
@@ -232,13 +260,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

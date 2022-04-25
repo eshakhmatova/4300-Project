@@ -1,6 +1,7 @@
 <?php 
 //retrieves all categories in database
 require('database.php');
+session_start();
 $query = 'SELECT * FROM category ORDER BY categoryId';
 $statement = $db->prepare($query);
 $statement->execute();
@@ -44,6 +45,12 @@ $statement->closeCursor();
     <form action = "add_product.php" method="post" id="add_product_form">
         <!--need to add "Add images" option too-->
         <p>reminder for ADD IMAGES</p>
+        <label> Product Images:
+            <input type="file" id="imageFile" name = "imageFile" multiple>
+        </label>
+        <div class="imgGallery">
+            <!--Displays images-->
+        </div>
         <br>
         <label>Product Name:
             <input type="text" required name="name">
@@ -54,7 +61,7 @@ $statement->closeCursor();
         </label>
         <br>
         <label>Category:
-            <select name = "cat">
+            <select name = "cat" required>
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?php echo $category['categoryId']; ?>">
                         <?php echo $category['name']; ?>
@@ -63,20 +70,49 @@ $statement->closeCursor();
             </select>
         </label>
         <br>
-        <label>Auction
-            <input type="checkbox" name="auction">
-        </label>
-        <br>
         <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
         <label>Price: 
+            <br>
             <input type="number" required name="price" min="0" step="0.01">
         </label>
         <br>
-        <p>need date input if auction-> sell by date</p>
+        <label>Auction
+            <input type="checkbox" id="auction" name="auction" onClick="toggleDate()">
+        </label>
         <br>
+        <label id="sellByDate" style="display:none"> Sell by Date:
+            <input type="datetime-local" name="sellByDate">
+        </label>
         <input type="submit" value="Add Product"><br>
-        </form>
+    </form>
 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(function () {
+            // Multiple images preview with JavaScript
+            var multiImgPreview = function (input, imgPreviewPlaceholder) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#chooseFile').on('change', function () {
+                multiImgPreview(this, 'div.imgGallery');
+            });
+        });
+
+        function toggleDate() {
+            var sellByDate = document.getElementById("sellByDate");
+            sellByDate.style.display = auction.checked ? "block" : "none";
+        }
+    </script>
 </body>
 
 </html>
