@@ -16,7 +16,6 @@ $query = 'SELECT * FROM image WHERE typeId = :typeId';
 $statement = $db->prepare($query);
 $statement->bindValue(':typeId', $productId);
 $statement->execute();
-//$result = $statement->fetch();
 $image = array();
 while ($row = $statement->fetch()) {
     array_push($image, $row['image']);
@@ -46,7 +45,7 @@ while ($row = $statement->fetch()) {
         <nav>
             <ul>
                 <li> <a href="website.php">Home</a></li>
-                <li> <a href="">Products</a></li>
+                <li> <a href="list_products.php">Products</a></li>
                 <li> <a href="">About</a></li>
                 <li> <a href="">Contact</a></li>
                 <li> <a href="account.php">Account</a></li>

@@ -46,7 +46,7 @@ else {
             $uploadOK = 1;
             if(in_array($fileType, $allowedFileType)) {
                 if(move_uploaded_file($tempLocation, $targetFilePath)) {
-                    $image = $uploadsDir.$fileName.$uploadDate;
+                    $image = $uploadsDir.$fileName.'/'.$uploadDate;
                 }
                 else {
                     $error_message = "Image could not be uploaded.";
