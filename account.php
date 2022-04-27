@@ -37,8 +37,8 @@ $userInfo = $statement1->fetch();
             <ul>
                 <li> <a href="website.php">Home</a></li>
                 <li> <a href="list_products.php">Products</a></li>
-                <li> <a href="">About</a></li>
-                <li> <a href="">Contact</a></li>
+                <li> <a href="about.html">About</a></li>
+                <li> <a href="contact.html">Contact</a></li>
                 <li> <a href="account.php">Account</a></li>
             </ul>
         </nav>

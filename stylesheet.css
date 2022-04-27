@@ -155,3 +155,21 @@ h4 {
 .col-4:hover {
     transform: translateY(-5px);
 }
+
+.contacth1{
+    font-family: 'Poppins', sans-serif;
+}
+
+.contactDiv{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.abouth1{
+    font-family: 'Poppins', sans-serif;
+}
+
+aboutDiv{
+    display: inline-block;
+    margin-left: 20px;
+}
