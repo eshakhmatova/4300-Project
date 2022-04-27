@@ -8,12 +8,25 @@ $statement->execute();
 $categories= $statement->fetchAll();
 $statement->closeCursor();
 
+//input should return entire row from products table
 $productId = filter_input(INPUT_POST, 'productId');
 $query = 'SELECT * FROM product WHERE productId = :productId';
 $statement = $db->prepare($query);
 $statement->bindValue(':productId', $productId);
 $statement->execute();
-$product = $statement->fetch();
+$productInfo = $statement->fetch();
+$statement->closeCursor();
+
+//query for all images associated with product
+$query = 'SELECT * FROM image WHERE type = 0 AND typeId = :typeId';
+$statement = $db->prepare($query);
+$statement->bindValue(':typeId', $productInfo['productId']);
+$statement->execute();
+$images = array();
+while($row = $statement->fetch()) {
+    array_push($images, $row);
+}
+$statement->closeCursor();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +34,7 @@ $product = $statement->fetch();
 
 <head>
     <meta charset="UTF-8">
-    <title> Goose Egg - Edit &ldquo;<?php echo $product['name']; ?>&rdquo;</title>
+    <title> Goose Egg - Edit &ldquo;<?php echo $productInfo['name']; ?>&rdquo;</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,9 +62,9 @@ $product = $statement->fetch();
     </div>
 
     <!--
-        need to figure out image, description, category, and auction/sellByDate
+        need to figure out image, category
     -->
-    <h1>Edit &ldquo;<?php echo $product['name']; ?>&rdquo;</h1>
+    <h1>Edit &ldquo;<?php echo $productInfo['name']; ?>&rdquo;</h1>
     <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
         <label> Product Images:
             <input type="file" id="chooseFile" name = "imageFile[]" multiple>
@@ -59,17 +72,20 @@ $product = $statement->fetch();
         <div class="imgGallery">
             <!--Displays images-->
         </div>
+        <?php foreach($images as $i) : ?>
+            <img src='<?php echo $i['image']; ?>'>
+        <?php endforeach; ?>
         <br>
         <label>Product Name:
-            <input type="text" required name="name" value='<?php echo $product['name']; ?>'>
+            <input type="text" required name="name" value='<?php echo $productInfo['name']; ?>'>
         </label>
         <br>
         <label>Product Description:
-            <textarea name="description" rows="4" cols="100" value='<?php echo $product['description']; ?>'></textarea>
+            <textarea name="description" rows ="4" cols="100"><?php echo $productInfo['description']?></textarea>
         </label>
         <br>
         <label>Category:
-            <select name = "cat" value='<?php echo $product['category']; ?>' required>
+            <select name = "cat" selected='<?php echo $productInfo['categoryId']; ?>' required>
                 <?php foreach ($categories as $category) : ?>
                     <option value="<?php echo $category['categoryId']; ?>">
                         <?php echo $category['name']; ?>
@@ -81,16 +97,9 @@ $product = $statement->fetch();
         <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
         <label>Price: 
             <br>
-            <input type="number" required name="price" min="0" step="0.01" value='<?php echo $product['price']; ?>'>
+            <input type="number" required name="price" min="0" step="0.01" value='<?php echo $productInfo['price']; ?>'>
         </label>
         <br>
-        <label>Auction
-            <input type="checkbox" id="auction" name="auction" onClick="toggleDate()" readonly>
-        </label>
-        <br>
-        <label id="sellByDate" style="display:none"> Sell by Date:
-            <input type="datetime-local" name="sellByDate" readonly>
-        </label>
         <input type="submit" value="Add Product"><br>
     </form>
 

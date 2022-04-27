@@ -1,7 +1,7 @@
 <?php
 //get all categories into $categories
 require_once('database.php');
-session_start();
+//session_start();
 
 //gets user's username from login page start SESSION
 $userId = $_SESSION['userID'];
@@ -44,38 +44,9 @@ $userInfo = $statement1->fetch();
         </nav>
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
-    <h1>Edit Your Account</h1>
-    <form action="edit_account.php" method="post" id="account">
-	<label style="width:400px;">First Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="firstName" value='<?php echo $userInfo['firstName']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Last Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="lastName" value='<?php echo $userInfo['lastName']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Birthdate: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="date" name="dob" value='<?php echo $userInfo['dob']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Email Address: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="email" value='<?php echo $userInfo['email']?>' readonly>
-        </label>
-		<br>
-		<label style="width:400px;">User Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="uname" value='<?php echo $userInfo['userName']?>'>
-        </label>
-        <br>
-        <label style="width:400px">Password:
-            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pword">
-		</label>
-		<br>
-		<label style="width:400px">Re-enter Password:
-            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pwordValidation">
-		</label>
-        <br>
-        <input style="padding:0; margin-left:14px; flex:0 0 40px;" type="submit" value="edit">		
-	</form>
+    <h1><?php echo $userInfo['userName']; ?>&#8216;s Profile</h1>
+    
+    <a href='add_product_form.php'>List a Product</a>
 
 </body>
 
