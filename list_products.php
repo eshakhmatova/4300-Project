@@ -12,8 +12,8 @@ $statement1->execute();
 $userInfo = $statement1->fetch();
 
 //loads all of user's products with one image in array
-//array includes product name, description, category, price, sellbydate (to know if auction), if sold, and image
-$query = 'SELECT product.productId, product.name, product.description, category.name AS cat, product.price, product.sellByDate, product.sold, image.image
+//array includes product id, name, description, category, price, sellbydate (to know if auction), if sold, and image
+$query = 'SELECT product.productId, product.userId, product.name, product.description, category.name AS cat, product.price, product.sellByDate, product.sold, image.image
             FROM product INNER JOIN category ON category.categoryId = product.categoryId
             INNER JOIN image ON image.type = 0 AND image.typeId = product.productId
             GROUP BY product.name';
@@ -21,7 +21,8 @@ $statement = $db->prepare($query);
 $statement->execute();
 $products = array();
 while ($row = $statement->fetch()) {
-    array_push($products, $row);
+    if($row['userId'] == $userId)
+        array_push($products, $row);
 }
 
 ?>
