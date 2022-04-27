@@ -13,7 +13,7 @@ $userInfo = $statement1->fetch();
 
 //loads all of user's products with one image in array
 //array includes product name, description, category, price, sellbydate (to know if auction), if sold, and image
-$query = 'SELECT product.name, product.description, category.name AS cat, product.price, product.sellByDate, product.sold, image.image
+$query = 'SELECT product.productId, product.name, product.description, category.name AS cat, product.price, product.sellByDate, product.sold, image.image
             FROM product INNER JOIN category ON category.categoryId = product.categoryId
             INNER JOIN image ON image.type = 0 AND image.typeId = product.productId
             GROUP BY product.name';
@@ -23,8 +23,6 @@ $products = array();
 while ($row = $statement->fetch()) {
     array_push($products, $row);
 }
-
-echo count($products);
 
 ?>
 
@@ -67,19 +65,12 @@ echo count($products);
             <h3><?php echo $p['name']; ?> </h3>
             <p><?php echo $p['description']; ?></p>
             <h5>$<?php echo $p['price']; ?></h5>
+            <form action="edit_product_form.php" method="POST">
+                <input type='hidden' name='productId' value='<?php echo $p['productId']; ?>'>
+                <input type='submit' name='editProduct' value='Edit'>
+            </form>
         </div>
     <?php endforeach; ?>
-
-    <!--
-        <?php foreach ($products as $p) : ?>
-            <div style="border-style: solid">
-                <img src='<?php echo p['image']; ?>' style='float:left'>
-                <h3><?php echo $p['name']?>; </h3>
-                <p><?php echo $p['description']; ?>
-                <h5><?php echo $p['price']; ?></h5>
-            </div>
-        <?php endforeach; ?>
-        -->
 
 </body>
 
