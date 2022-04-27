@@ -13,7 +13,7 @@ $userInfo = $statement1->fetch();
 
 //loads all of user's products with one image in array
 //array includes product id, name, description, category, price, sellbydate (to know if auction), if sold, and image
-$query = 'SELECT product.productId, product.userId, product.name, product.description, category.name AS cat, product.price, product.sellByDate, product.sold, image.image
+$query = 'SELECT product.*, category.name AS cat, image.image
             FROM product INNER JOIN category ON category.categoryId = product.categoryId
             INNER JOIN image ON image.type = 0 AND image.typeId = product.productId
             GROUP BY product.name';
@@ -21,6 +21,7 @@ $statement = $db->prepare($query);
 $statement->execute();
 $products = array();
 while ($row = $statement->fetch()) {
+    //if current logged-in user is creator of product, add to array
     if($row['userId'] == $userId)
         array_push($products, $row);
 }
