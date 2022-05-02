@@ -156,6 +156,7 @@ h4 {
     transform: translateY(-5px);
 }
 
+<<<<<<< HEAD
 .footer {
     background: #000;
     color:#8a8a8a;
@@ -353,3 +354,22 @@ td:last-child {
 tdh:last-child {
     text-align: right;
 }
+=======
+.contacth1{
+    font-family: 'Poppins', sans-serif;
+}
+
+.contactDiv{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.abouth1{
+    font-family: 'Poppins', sans-serif;
+}
+
+aboutDiv{
+    display: inline-block;
+    margin-left: 20px;
+}
+>>>>>>> 378c3711e2fa9f0b7b4ff8b34bf9b07f702f3d7a
