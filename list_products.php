@@ -59,20 +59,31 @@ while ($row = $statement->fetch()) {
         </nav>
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
-    <h1><?php echo $userInfo['userName']; ?>&#8216;s Products</h1>
-    
-    <?php foreach ($products as $p) : ?>
-        <div style='border-style: solid; margin:15px;'>
-            <img src="<?php echo $p['image']; ?>">
-            <h3><?php echo $p['name']; ?> </h3>
-            <p><?php echo $p['description']; ?></p>
-            <h5>$<?php echo $p['price']; ?></h5>
-            <form action="edit_product_form.php" method="POST">
-                <input type='hidden' name='productId' value='<?php echo $p['productId']; ?>'>
-                <input type='submit' name='editProduct' value='Edit'>
-            </form>
-        </div>
-    <?php endforeach; ?>
+
+    <div class="container">
+        <h1><?php echo $userInfo['userName']; ?>&#8216;s Products</h1>
+        <form action="add_product_form.php">
+             <button type="submit">Add New Product</button>
+        </form>
+        <?php foreach ($products as $p) : ?>
+            <div class="productListing">
+                <div class="productItem">
+                    <img src="<?php echo $p['image']; ?>" class="thumbnail">
+                </div>
+                <div class="productItem">
+                    <h3><?php echo $p['name']; ?> </h3>
+                    <h5>$<?php echo $p['price']; ?></h5>
+                    <form action="edit_product_form.php" method="POST">
+                        <input type='hidden' name='productId' value='<?php echo $p['productId']; ?>'>
+                        <input type='submit' name='editProduct' value='Edit'>
+                    </form>
+                </div>
+                <div class="productItem">
+                    <p><?php echo $p['description']; ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
 </body>
 

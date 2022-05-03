@@ -44,38 +44,80 @@ $userInfo = $statement1->fetch();
         </nav>
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
-    <h1>Edit Your Account</h1>
-    <form action="edit_account.php" method="post" id="account">
-	<label style="width:400px;">First Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="firstName" value='<?php echo $userInfo['firstName']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Last Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="lastName" value='<?php echo $userInfo['lastName']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Birthdate: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="date" name="dob" value='<?php echo $userInfo['dob']?>'>
-        </label>
-		<br>
-		<label style="width:400px;">Email Address: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="email" value='<?php echo $userInfo['email']?>' readonly>
-        </label>
-		<br>
-		<label style="width:400px;">User Name: 
-			<input style="margin-left:50px;flex:0 0 130px;" type="text" name="uname" value='<?php echo $userInfo['userName']?>'>
-        </label>
-        <br>
-        <label style="width:400px">Password:
-            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pword">
-		</label>
-		<br>
-		<label style="width:400px">Re-enter Password:
-            <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pwordValidation">
-		</label>
-        <br>
-        <input style="padding:0; margin-left:14px; flex:0 0 40px;" type="submit" value="edit">		
-	</form>
+
+    <div class="container">
+        <h1>Edit Your Account</h1>
+        <div class="formGrid">
+            <form action="edit_account.php" method="post" id="account">
+                <div class="gridItem">
+                    <label style="width:400px;">First Name: 
+                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="firstName" value='<?php echo $userInfo['firstName']?>'>
+                    </label>
+                    <br>
+                    <label style="width:400px;">Last Name: 
+                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="lastName" value='<?php echo $userInfo['lastName']?>'>
+                    </label>
+                    <br>
+                    <label style="width:400px;">Birthdate: 
+                        <input style="margin-left:50px;flex:0 0 130px;" type="date" name="dob" value='<?php echo $userInfo['dob']?>'>
+                    </label>
+                    <br>
+                    <label style="width:400px;">Email Address: 
+                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="email" value='<?php echo $userInfo['email']?>' readonly>
+                    </label>
+                    <br>
+                    <label style="width:400px;">User Name: 
+                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="uname" value='<?php echo $userInfo['userName']?>'>
+                    </label>
+                    <br>
+                    <label style='width:400px;'>About Me:
+                        <textarea name="aboutMe" rows="2" cols="100"></textarea>
+                    </label>
+                    <br>
+                    <label style="width:400px">Password:
+                        <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pword">
+                    </label>
+                    <br>
+                    <label style="width:400px">Re-enter Password:
+                        <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pwordValidation">
+                    </label>
+                    <br>
+                    <input style="padding:0; margin-left:14px; flex:0 0 40px;" type="submit" value="Save">		
+                </div>
+                <div class="gridItem">
+                    <div class="imgGallery">
+                        <!--Displays images-->
+                    </div>
+                    <label>Profile Picture:
+                        <input type="file" id="chooseFile" name = "imageFile">
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script>
+            $(function () {
+                // Multiple images preview with JavaScript
+                var multiImgPreview = function (input, imgPreviewPlaceholder) {
+                    if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#chooseFile').on('change', function () {
+                multiImgPreview(this, 'div.imgGallery');
+            });
+        });
+    </script>
 
 </body>
 
