@@ -13,6 +13,7 @@ $firstName = filter_input(INPUT_POST, 'firstName');
 $lastName = filter_input(INPUT_POST, 'lastName');
 $dob = filter_input(INPUT_POST, 'dob');
 $uname = filter_input(INPUT_POST, 'uname');
+$aboutMe = filter_input(INPUT_POST, 'aboutMe');
 $pword = filter_input(INPUT_POST, 'pword');
 $pwordValidation = filter_input(INPUT_POST, 'pwordValidation');
 
@@ -25,13 +26,14 @@ if ($pwordValidation != $pword) {
 } else { //if input is valid
     // Add the product to the database 
     $query = 'UPDATE users
-                SET firstName = :firstName, lastName = :lastName, DOB = :DOB, userName = :userName
+                SET firstName = :firstName, lastName = :lastName, DOB = :DOB, userName = :userName, aboutMe = :aboutMe
                 WHERE userId = :userId';
     $statement = $db->prepare($query);
     $statement->bindValue(':firstName', $firstName);
     $statement->bindValue(':lastName', $lastName);
     $statement->bindValue(':DOB', $dob);
     $statement->bindValue(':userName', $uname);
+    $statement->bindValue(':aboutMe', $aboutMe);
     $statement->bindValue(':userId', $userId);
     $statement->execute();
     $statement->closeCursor();
@@ -45,7 +47,6 @@ if ($pwordValidation != $pword) {
         $statement->closeCursor();
     }
 
-    // Go back to login page
     include('profile.php');
 }
 ?>

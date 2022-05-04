@@ -44,9 +44,17 @@ $userInfo = $statement1->fetch();
         </nav>
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
-    <h1><?php echo $userInfo['userName']; ?>&#8216;s Profile</h1>
-    
-    <a href='add_product_form.php'>List a Product</a>
+    <div class="container">
+        <div class="profileInfo">
+            <div class="gridItem">
+                <p> prof pic here</p>
+            </div>
+            <div class="gridItem">
+                <h1><?php echo $userInfo['userName']; ?>&#8216;s Profile</h1>
+                <h3><?php echo $userInfo['aboutMe']; ?></h3>
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -372,4 +372,62 @@ aboutDiv{
     display: inline-block;
     margin-left: 20px;
 }
+<<<<<<< HEAD
 >>>>>>> 378c3711e2fa9f0b7b4ff8b34bf9b07f702f3d7a
+=======
+
+.productListing {
+    border: solid black;
+    border-radius: 8px;
+    border-width: medium;
+    margin: 15px;
+    background: rgba(255, 214, 214, 0.5);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 200px 400px auto;
+}
+
+.profileInfo {
+    border: solid black;
+    border-radius: 8px;
+    border-width: medium;
+    margin: 15px;
+    background: rgba(255, 214, 214, 0.5);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 200px auto;
+}
+
+.profileGrid {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.product {
+    border: solid black;
+    border-radius: 8px;
+    border-width: medium;
+    margin: 15px;
+    background: rgba(255, 214, 214, 0.5);
+    padding: 15px;
+}
+
+.gridItem {
+    padding: 10px;
+}
+
+.thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+    display: inline;
+  }
+
+  .formGrid {
+      display: grid;
+      grid-template-columns: 400px auto;
+      padding: 15px;
+  }
+>>>>>>> 5a87a77ef7a5d182215424092404309aa94576c9
