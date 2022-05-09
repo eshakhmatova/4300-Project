@@ -25,10 +25,6 @@
                 </div>
                 <nav>
                     <ul>
-                        <li> <a href="website.html">Home</a></li>
-                        <li> <a href="allproducts.html">Products</a></li>
-                        <li> <a href="">About</a></li>
-                        <li> <a href="">Contact</a></li>
                         <li> <a href="website.php">Home</a></li>
                         <li> <a href="list_products.php">Products</a></li>
                         <li> <a href="about.html">About</a></li>

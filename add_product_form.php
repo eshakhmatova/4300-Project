@@ -14,7 +14,7 @@ $statement->closeCursor();
 
 <head>
     <meta charset="UTF-8">
-    <title> Goose Egg - <?php echo $userInfo['userName']; ?> </title>
+    <title> Goose Egg - List a Product </title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,41 +41,48 @@ $statement->closeCursor();
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
 
-    <h1>List a Product</h1>
-    <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
-        <label> Product Images:
-            <input type="file" id="chooseFile" name = "imageFile[]" multiple>
-        </label>
-        <div class="imgGallery">
-            <!--Displays images-->
-        </div>
-        <br>
-        <label>Product Name:
-            <input type="text" required name="name">
-        </label>
-        <br>
-        <label>Product Description:
-            <textarea name="description" rows="4" cols="100"></textarea>
-        </label>
-        <br>
-        <label>Category:
-            <select name = "cat" required>
-                <?php foreach ($categories as $category) : ?>
-                    <option value="<?php echo $category['categoryId']; ?>">
-                        <?php echo $category['name']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </label>
-        <br>
-        <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
-        <label>Price: 
-            <br>
-            <input type="number" required name="price" min="0" step="0.01">
-        </label>
-        <br>
-        <input type="submit" value="Add Product"><br>
-    </form>
+    <div class="container">
+        <h1>List a Product</h1>
+        <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
+            <div class="formGrid">
+                <div class="gridItem">
+                    <label>Product Name:
+                        <input type="text" required name="name">
+                    </label>
+                    <br>
+                    <label>Product Description:
+                        <textarea name="description" rows="4" cols="40"></textarea>
+                    </label>
+                    <br>
+                    <label>Category:
+                        <select name = "cat" required>
+                            <?php foreach ($categories as $category) : ?>
+                                <option value="<?php echo $category['categoryId']; ?>">
+                                    <?php echo $category['name']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    <br>
+                    <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
+                    <label>Price: 
+                        <br>
+                        <input type="number" required name="price" min="0" step="0.01">
+                    </label>
+                    <br>
+                    <input type="submit" value="Add Product"><br>
+                </div>
+                <div class="gridItem">
+                    <label> Product Images:
+                        <input type="file" id="chooseFile" name = "imageFile[]" multiple>
+                    </label>
+                    <div class="imgGallery">
+                        <!--Displays images-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

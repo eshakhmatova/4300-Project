@@ -420,10 +420,16 @@ aboutDiv{
     padding: 5px; /* Some padding */
     width: 150px; /* Set a small width */
     display: inline;
-  }
+}
 
-  .formGrid {
-      display: grid;
-      grid-template-columns: 400px auto;
-      padding: 15px;
-  }
+.formGrid {
+    border: solid black;
+    border-radius: 8px;
+    border-width: medium;
+    margin: 15px;
+    background: rgba(255, 214, 214, 0.5);
+    display: grid;
+    grid-template-columns: 400px auto;
+    padding: 15px;
+
+}
