@@ -54,6 +54,10 @@ $userInfo = $statement1->fetch();
                 <h3><?php echo $userInfo['aboutMe']; ?></h3>
             </div>
         </div>
+
+        <div class="profileGrid">
+            <?php for() ?>
+        </div>
     </div>
 
 </body>
