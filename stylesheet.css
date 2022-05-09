@@ -156,7 +156,7 @@ h4 {
     transform: translateY(-5px);
 }
 
-<<<<<<< HEAD
+/* HEAD */
 .footer {
     background: #000;
     color:#8a8a8a;
@@ -296,7 +296,7 @@ input:focus {
 }
 
 table {
-    width: 100%
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -354,7 +354,7 @@ td:last-child {
 tdh:last-child {
     text-align: right;
 }
-=======
+/*-------------------------- */
 .contacth1{
     font-family: 'Poppins', sans-serif;
 }
@@ -372,9 +372,6 @@ aboutDiv{
     display: inline-block;
     margin-left: 20px;
 }
-<<<<<<< HEAD
->>>>>>> 378c3711e2fa9f0b7b4ff8b34bf9b07f702f3d7a
-=======
 
 .productListing {
     border: solid black;
@@ -430,4 +427,3 @@ aboutDiv{
       grid-template-columns: 400px auto;
       padding: 15px;
   }
->>>>>>> 5a87a77ef7a5d182215424092404309aa94576c9

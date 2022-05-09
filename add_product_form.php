@@ -74,13 +74,6 @@ $statement->closeCursor();
             <input type="number" required name="price" min="0" step="0.01">
         </label>
         <br>
-        <label>Auction
-            <input type="checkbox" id="auction" name="auction" onClick="toggleDate()">
-        </label>
-        <br>
-        <label id="sellByDate" style="display:none"> Sell by Date:
-            <input type="datetime-local" name="sellByDate">
-        </label>
         <input type="submit" value="Add Product"><br>
     </form>
 

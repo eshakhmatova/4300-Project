@@ -8,8 +8,6 @@ $name = filter_input(INPUT_POST, 'name');
 $desc = filter_input(INPUT_POST, 'description');
 $category = filter_input(INPUT_POST, 'cat');
 $price = filter_input(INPUT_POST, 'price');
-$sellByDate = (isset($_POST['auction'])) ? filter_input(INPUT_POST, 'sellByDate') : date('Y-m-d H:i:s', time());
-
 
 //validate inputs
 if ($name == null || $price == null) {
@@ -19,15 +17,14 @@ if ($name == null || $price == null) {
 else {
     
     require_once('database.php');
-    $query = 'INSERT INTO product (userId, name, description, categoryId, price, createDate, sellByDate, sold, customerId)
-                VALUES (:userId, :name, :description, :categoryId, :price, CURRENT_TIMESTAMP, :sellByDate, 0, 0)';
+    $query = 'INSERT INTO product (userId, name, description, categoryId, price, createDate, sold, customerId)
+                VALUES (:userId, :name, :description, :categoryId, :price, :sellByDate, 0, 0)';
     $statement = $db->prepare($query);
     $statement->bindValue(':userId', $_SESSION['userID']);
     $statement->bindValue(':name', $name);
     $statement->bindValue(':description', $desc);
     $statement->bindValue(':categoryId', $category);
     $statement->bindValue(':price', $price);
-    $statement->bindValue(':sellByDate', $sellByDate);
     $statement->execute();
     $statement->closeCursor();
 
