@@ -64,44 +64,52 @@ $statement->closeCursor();
     <!--
         need to figure out image, category
     -->
-    <h1>Edit &ldquo;<?php echo $productInfo['name']; ?>&rdquo;</h1>
-    <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
-        <label> Product Images:
-            <input type="file" id="chooseFile" name = "imageFile[]" multiple>
-        </label>
-        <div class="imgGallery">
-            <!--Displays images-->
-        </div>
-        <?php foreach($images as $i) : ?>
-            <img src='<?php echo $i['image']; ?>'>
-        <?php endforeach; ?>
-        <br>
-        <label>Product Name:
-            <input type="text" required name="name" value='<?php echo $productInfo['name']; ?>'>
-        </label>
-        <br>
-        <label>Product Description:
-            <textarea name="description" rows ="4" cols="100"><?php echo $productInfo['description']?></textarea>
-        </label>
-        <br>
-        <label>Category:
-            <select name = "cat" selected='<?php echo $productInfo['categoryId']; ?>' required>
-                <?php foreach ($categories as $category) : ?>
-                    <option value="<?php echo $category['categoryId']; ?>">
-                        <?php echo $category['name']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </label>
-        <br>
-        <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
-        <label>Price: 
-            <br>
-            <input type="number" required name="price" min="0" step="0.01" value='<?php echo $productInfo['price']; ?>'>
-        </label>
-        <br>
-        <input type="submit" value="Add Product"><br>
-    </form>
+    <div class="container">
+        <h1>Edit &ldquo;<?php echo $productInfo['name']; ?>&rdquo;</h1>
+        <form action = "add_product.php" method="post" id="add_product_form" enctype="multipart/form-data">
+            <div class="formGrid">
+                <div class="gridItem">
+                    <label>Product Name:
+                        <input type="text" required name="name" value='<?php echo $productInfo['name']; ?>'>
+                    </label>
+                    <br>
+                    <label>Product Description:
+                        <textarea name="description" rows ="4" cols="40"><?php echo $productInfo['description']?></textarea>
+                    </label>
+                    <br>
+                    <label>Category:
+                        <select name = "cat" selected='<?php echo $productInfo['categoryId']; ?>' required>
+                            <?php foreach ($categories as $category) : ?>
+                                <option value="<?php echo $category['categoryId']; ?>">
+                                    <?php echo $category['name']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    <br>
+                    <!--MAYBE NEED BETTER WAY FOR PRICE INPUT, NEED TO VALIDATE INPUT-->
+                    <label>Price: 
+                        <br>
+                        <input type="number" required name="price" min="0" step="0.01" value='<?php echo $productInfo['price']; ?>'>
+                    </label>
+                    <br>
+                    <input type="submit" value="Add Product"><br>
+                </div>
+                <div class="gridItem">
+                    <label> Product Images:
+                        <input type="file" id="chooseFile" name = "imageFile[]" multiple>
+                    </label>
+                    <div class="imgGallery">
+                        <!--Displays images-->
+                    </div>
+                    <?php foreach($images as $i) : ?>
+                        <img src='<?php echo $i['image']; ?>'>
+                    <?php endforeach; ?>
+                    <br>
+                </div>
+            </div>    
+        </form>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

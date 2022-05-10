@@ -18,7 +18,7 @@ else {
     
     require_once('database.php');
     $query = 'INSERT INTO product (userId, name, description, categoryId, price, createDate, sold, customerId)
-                VALUES (:userId, :name, :description, :categoryId, :price, :sellByDate, 0, 0)';
+                VALUES (:userId, :name, :description, :categoryId, :price, CURRENT_TIMESTAMP, 0, 0)';
     $statement = $db->prepare($query);
     $statement->bindValue(':userId', $_SESSION['userID']);
     $statement->bindValue(':name', $name);
@@ -39,7 +39,7 @@ else {
             $tempLocation = $_FILES['imageFile']['tmp_name'][$id];
             $targetFilePath = $uploadsDir.$fileName;
             $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
-            $uploadDate = date('Y-m-d H:i:s')
+            $uploadDate = date('Y-m-d H:i:s');
             $uploadOK = 1;
             if(in_array($fileType, $allowedFileType)) {
                 if(move_uploaded_file($tempLocation, $targetFilePath)) {

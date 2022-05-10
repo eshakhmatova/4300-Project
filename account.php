@@ -47,8 +47,8 @@ $userInfo = $statement1->fetch();
 
     <div class="container">
         <h1>Edit Your Account</h1>
-        <div class="formGrid">
-            <form action="edit_account.php" method="post" id="account">
+        <form action="edit_account.php" method="post" id="account">
+            <div class="formGrid">
                 <div class="gridItem">
                     <label style="width:400px;">First Name: 
                         <input style="margin-left:50px;flex:0 0 130px;" type="text" name="firstName" value='<?php echo $userInfo['firstName']?>'>
@@ -59,22 +59,23 @@ $userInfo = $statement1->fetch();
                     </label>
                     <br>
                     <label style="width:400px;">Birthdate: 
-                        <input style="margin-left:50px;flex:0 0 130px;" type="date" name="dob" value='<?php echo $userInfo['dob']?>'>
+                        <input style="margin-left:60px;flex:0 0 200px;" type="date" name="dob" value='<?php echo $userInfo['dob']?>'>
                     </label>
                     <br>
                     <label style="width:400px;">Email Address: 
-                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="email" value='<?php echo $userInfo['email']?>' readonly>
+                        <input style="margin-left:20px;flex:0 0 130px;" type="text" name="email" value='<?php echo $userInfo['email']?>' readonly>
                     </label>
                     <br>
                     <label style="width:400px;">User Name: 
-                        <input style="margin-left:50px;flex:0 0 130px;" type="text" name="uname" value='<?php echo $userInfo['userName']?>'>
+                        <input style="margin-left:45px;flex:0 0 130px;" type="text" name="uname" value='<?php echo $userInfo['userName']?>'>
                     </label>
                     <br>
                     <label style='width:400px;'>About Me:
-                        <textarea name="aboutMe" rows="2" cols="100"></textarea>
+                        <textarea name="aboutMe" rows="2" cols="40"></textarea>
                     </label>
                     <br>
                     <label style="width:400px">Password:
+                        <br>
                         <input style="margin-left:50px;flex:0 0 130px;" type="password" name="pword">
                     </label>
                     <br>
@@ -92,8 +93,8 @@ $userInfo = $statement1->fetch();
                         <input type="file" id="chooseFile" name = "imageFile">
                     </label>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
         
         
@@ -107,7 +108,7 @@ $userInfo = $statement1->fetch();
                     for (i = 0; i < filesAmount; i++) {
                         var reader = new FileReader();
                         reader.onload = function (event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                            $($.parseHTML('<img>')).attr({'src': event.target.result, 'class': 'imageUp'}).appendTo(imgPreviewPlaceholder);
                         }
                         reader.readAsDataURL(input.files[i]);
                     }

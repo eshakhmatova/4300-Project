@@ -53,12 +53,20 @@ while ($row = $statement->fetch()) {
         </nav>
         <img src="./images/cart.png" width="30px" height="30px">
     </div>
-    <?php foreach ($image as $i): ?>
-        <img src="<?php echo $i; ?>">
-    <?php endforeach; ?>
-    <h1><?php echo $productInfo['name']; ?><h1>
-    <h3>$<?php echo $productInfo['price']; ?></h3>
-    <p><?php echo $productInfo['description']; ?></p>
+    <div class='container'>
+        <h1><?php echo $productInfo['name']; ?></h1>
+        <div class='formGrid'>
+            <div class='gridItem'>
+                <h3>$<?php echo $productInfo['price']; ?></h3>
+                <p><?php echo $productInfo['description']; ?></p>
+            </div>
+            <div class="gridItem">
+                <?php foreach ($image as $i): ?>
+                    <img src="<?php echo $i; ?>">
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 
 </body>
 

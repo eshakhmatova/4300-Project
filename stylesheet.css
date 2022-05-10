@@ -429,7 +429,15 @@ aboutDiv{
     margin: 15px;
     background: rgba(255, 214, 214, 0.5);
     display: grid;
-    grid-template-columns: 400px auto;
+    grid-template-columns: 500px auto;
     padding: 15px;
 
+}
+
+.imageUp {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 250px; /* Set a small width */
+    display: inline;
 }

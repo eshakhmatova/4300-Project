@@ -5,6 +5,7 @@ $lastName = filter_input(INPUT_POST, 'lastName');
 $dob = filter_input(INPUT_POST, 'dob');
 $email = filter_input(INPUT_POST, 'email');
 $uname = filter_input(INPUT_POST, 'uname');
+$aboutMe = filter_input(INPUT_POST, 'aboutMe');
 $pword = filter_input(INPUT_POST, 'pword');
 $pwordValidation = filter_input(INPUT_POST, 'pwordValidation');
 
