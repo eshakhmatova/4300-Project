@@ -56,7 +56,7 @@ $userInfo = $statement1->fetch();
         </div>
 
         <div class="profileGrid">
-            <?php for() ?>
+            
         </div>
     </div>
 

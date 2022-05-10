@@ -37,13 +37,13 @@ else {
         foreach ($_FILES['imageFile']['name'] as $id=>$val) {
             $fileName = $_FILES['imageFile']['name'][$id];
             $tempLocation = $_FILES['imageFile']['tmp_name'][$id];
-            $targetFilePath = $uploadsDir.$fileName;
-            $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
             $uploadDate = date('Y-m-d H:i:s');
+            $targetFilePath = $uploadsDir.$fileName.'.'.$uploadDate;
+            $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
             $uploadOK = 1;
             if(in_array($fileType, $allowedFileType)) {
                 if(move_uploaded_file($tempLocation, $targetFilePath)) {
-                    $image = $uploadsDir.$fileName.'/'.$uploadDate;
+                    $image = $uploadsDir.$fileName.'.'.$uploadDate;
                 }
                 else {
                     $error_message = "Image could not be uploaded.";
